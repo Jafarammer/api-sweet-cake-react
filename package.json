@@ -1,0 +1,31 @@
+{
+  "name": "api-sweet-cake-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Jafarammer/api-sweet-cake-react.git"
+  },
+  "author": "Jafarammer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Jafarammer/api-sweet-cake-react/issues"
+  },
+  "homepage": "https://github.com/Jafarammer/api-sweet-cake-react#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validator": "^6.14.2",
+    "helmet": "^6.0.0",
+    "pg": "^8.8.0"
+  },
+  "devDependencies": {
+    "body-parser": "^1.20.1",
+    "nodemon": "^2.0.20"
+  }
+}
