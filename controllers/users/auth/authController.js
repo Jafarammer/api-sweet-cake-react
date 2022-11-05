@@ -7,7 +7,7 @@ const findModel = require("../../../models/users/findUserModel");
 
 const register = async (req, res) => {
   try {
-    const { name, email, phone_number, password, confirmPassword } = req.body;
+    const { name, email, phoneNumber, password, confirmPassword } = req.body;
     const searchEmail = await findModel.getUserEmail(email);
     const getEmail = searchEmail.rows;
 
@@ -20,7 +20,7 @@ const register = async (req, res) => {
       const getData = await model.addUser({
         name,
         email,
-        phone_number,
+        phoneNumber,
         password: hashPass,
       });
       if (getData) {
@@ -41,7 +41,7 @@ const login = async (req, res) => {
     if (searchEmail?.rowCount) {
       const checkPassword = bcrypt.compareSync(
         password,
-        searchEmail?.rows[0].password
+        searchEmail?.rows[0]?.password
       );
       if (checkPassword) {
         const token = jwt.sign(
@@ -51,16 +51,16 @@ const login = async (req, res) => {
             expiresIn: "30m",
           }
         );
-        return res.send({
+        return res.status(200).send({
           user: { ...searchEmail?.rows[0], ...{ password: null } },
           token,
           message: "Login success",
         });
       } else {
-        return res.send({ error: "Password wrong" });
+        return res.status(400).send({ error: "Password wrong" });
       }
     } else {
-      return res.send({
+      return res.status(400).send({
         error: "User not found, please enter a valid email!!!",
       });
     }

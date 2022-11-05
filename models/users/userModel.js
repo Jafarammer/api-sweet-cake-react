@@ -34,4 +34,27 @@ const addUser = (props) => {
   });
 };
 
-module.exports = { getAllUsers, addUser };
+const editUser = (props) => {
+  return new Promise((resolve, reject) => {
+    db.query(
+      "UPDATE users SET name = $1, email = $2, phone_number = $3, password = $4, photo_profile = $5 WHERE id = $6",
+      [
+        props.name,
+        props.email,
+        props.phoneNumber,
+        props.password,
+        props.photoProfile,
+        props.id,
+      ],
+      (error, result) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(result);
+        }
+      }
+    );
+  });
+};
+
+module.exports = { getAllUsers, addUser, editUser };
